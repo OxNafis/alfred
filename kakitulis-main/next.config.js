@@ -1,8 +1,11 @@
 // next.config.js
 const { i18n } = require('./next-i18next.config');
 
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     i18n,
+    // Add these settings for Codespaces
+    webSocketTimeout: 300000,
     async rewrites() {
         return [
             // Rewrite the URL /en or /es to /?lng=en or /?lng=es
@@ -19,3 +22,5 @@ module.exports = {
         OPENAI_API_KEY: process.env.OPENAI_API_KEY
     },
 };
+
+module.exports = nextConfig;
