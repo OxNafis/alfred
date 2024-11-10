@@ -4,3 +4,4 @@ next-env.d.ts
 tsconfig.json
 src/env.local
 env.local
+alfred-main/env.local
