@@ -2,3 +2,5 @@ node_modules
 .next/
 next-env.d.ts
 tsconfig.json
+src/env.local
+env.local
