@@ -5,3 +5,4 @@ tsconfig.json
 src/env.local
 env.local
 alfred-main/env.local
+alfred.git/
