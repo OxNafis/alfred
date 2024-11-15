@@ -16,4 +16,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default appWithTranslation(MyApp, { ssr: false });
+export default appWithTranslation(MyApp);
