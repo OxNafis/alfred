@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Toast from "./Toast";
 
 interface OutputComponentProps {
@@ -6,8 +6,11 @@ interface OutputComponentProps {
     onClearOutput: () => void;
 }
 
-const OutputComponent: React.FC<OutputComponentProps> = ({generatedOutput, onClearOutput}) => {
+const OutputComponent: React.FC<OutputComponentProps> = ({ generatedOutput, onClearOutput }) => {
     const [toastVisible, setToastVisible] = useState(false);
+
+    // Debugging log to check if generatedOutput is received correctly
+    console.log("Generated Output:", generatedOutput);
 
     const copyTextToClipboard = async (answer: string) => {
         try {
@@ -36,21 +39,19 @@ const OutputComponent: React.FC<OutputComponentProps> = ({generatedOutput, onCle
 
     const outputs = splitOutput(generatedOutput);
 
-
     return (
         <div className="w-full lg:w-1/2">
             <div className="xl:sticky xl:z-10 top-0 flex items-center px-3 bg-white border-b border-gray-200">
                 <nav className="flex flex-grow py-1 space-x-3" aria-label="Tabs">
                     <button
                         className="relative transition-all duration-150 before:transition-all before:duration-150 before:absolute before:inset-0 whitespace-nowrap py-2 px-3 text-xs font-medium before:bg-gray-100 before:rounded-lg before:scale-100 before:opacity-100 text-blue-700">
-            <span className="relative">
-              New outputs{" "}
-                <span className="px-2 py-1 ml-2 text-xs rounded-full bg-white">
-                {outputs.length}
-              </span>
-            </span>
+                        <span className="relative">
+                            New outputs{" "}
+                            <span className="px-2 py-1 ml-2 text-xs rounded-full bg-white">
+                                {outputs.length}
+                            </span>
+                        </span>
                     </button>
-                    {/* ... other buttons, if needed */}
                 </nav>
                 <div>
                     <button
@@ -68,30 +69,24 @@ const OutputComponent: React.FC<OutputComponentProps> = ({generatedOutput, onCle
                             <div key={index}
                                  className="py-3 px-3 border-b border-gray-200 group cursor-pointer bg-green-50 hover:bg-green-300/5">
                                 <div className="flex items-center space-x-2">
-                                    {/* Your action buttons */}
+                                    {/* Action buttons could go here */}
                                 </div>
                                 <div
                                     className="w-full mt-2 mb-3 text-base font-medium leading-7 text-gray-800 whitespace-pre-wrap pre"
                                     onClick={() => copyTextToClipboard(answer)}
-
                                 >
                                     {answer}
                                     {toastVisible && <Toast message="Text copied to clipboard!" duration={3000}
-                                                            onDismiss={handleToastDismiss}/>}
-
+                                                            onDismiss={handleToastDismiss} />}
                                 </div>
-
                             </div>
                         ))}
-
                     </>
                 ) : (
                     <div
                         className="w-4/5 mx-auto mt-12 text-gray-900 bg-white border border-gray-200 p-4 rounded-md shadow-sm flex items-center justify-center">
                         <span className="text-lg font-normal text-gray-200">No output generated yet.</span>
                     </div>
-
-
                 )}
             </div>
         </div>
