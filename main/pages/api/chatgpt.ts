@@ -6,6 +6,10 @@ import { Template, TemplateInput } from "../../constants/templates";
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
+
+// Debugging: Log the API key to verify it's loading correctly (be cautious in production)
+console.log("API Key:", process.env.OPENAI_API_KEY);
+
 const openai = new OpenAIApi(configuration);
 
 export type InputsData = {
@@ -69,4 +73,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
     }
 }
-
